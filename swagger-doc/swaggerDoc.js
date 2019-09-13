@@ -9,6 +9,7 @@ const options = {
             description: "RAVi Node JS Task Project"
         },
         basePath: "/",
+        schemes: "https",
     },
     apis: ["routes/routes.js"],
 }

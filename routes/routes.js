@@ -10,6 +10,23 @@ const appRoutes = (app, db) => {
     user.setDB(db)
 
     /**
+    * @swagger
+    * definitions:
+    *   Register:
+    *     required:
+    *       - email
+    *       - password
+    *       - name
+    *     properties:
+    *       email:
+    *         type: string
+    *       password:
+    *         type: string
+    *       name:
+    *         type: string
+    */
+
+    /**
      * @swagger
      * /register:
      *  post:
@@ -20,6 +37,9 @@ const appRoutes = (app, db) => {
      *      - name: user
      *        in: body
      *        required: true
+     *        schema:
+     *           type: object
+     *           $ref: '#/definitions/Register'
      *    responses:
      *       200:
      *         description: User successfully registered
@@ -58,6 +78,20 @@ const appRoutes = (app, db) => {
     })
 
     /**
+    * @swagger
+    * definitions:
+    *   Login:
+    *     required:
+    *       - email
+    *       - password
+    *     properties:
+    *       email:
+    *         type: string
+    *       password:
+    *         type: string
+    */
+
+    /**
      * @swagger
      * /login:
      *  post:
@@ -68,6 +102,9 @@ const appRoutes = (app, db) => {
      *      - name: credentials
      *        in: body
      *        required: true
+     *        schema:
+     *           type: object
+     *           $ref: '#/definitions/Login'
      *    responses:
      *       200:
      *         description: User successfully loggedin
@@ -118,6 +155,11 @@ const appRoutes = (app, db) => {
      *    description : This is to get list users
      *    produces:
      *      - application/json
+     *    parameters:
+     *       - name: token
+     *         in: header
+     *         required: true
+     *         type: string
      *    responses:
      *       200:
      *         description: List of users
@@ -151,12 +193,10 @@ const appRoutes = (app, db) => {
      *         in: path
      *         required: true
      *         type: integer
-     *    security:
-     *       - description: JWT authorization.
-     *         bearer: xxxxxx.yyyyyyy.zzzzzz
-     *         type: apiKey
-     *         name: Authorization
+     *       - name: token
      *         in: header
+     *         required: true
+     *         type: string
      *    responses:
      *       200:
      *         description: Get user

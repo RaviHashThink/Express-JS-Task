@@ -13,7 +13,7 @@ function getByEmail(email, callback) {
 }
 
 function getAll(callback) {
-    db.all("SELECT * FROM users", callback);
+    db.all("SELECT id, name, email FROM users", callback);
 }
 
 function getById(id, callback) {
